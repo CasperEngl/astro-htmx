@@ -28,15 +28,15 @@ const connection = connect({
 
 export const db = drizzle(connection);
 
-export function getLatestProducts({ limit = 10 } = {}) {
-  const products = db
+export async function getLatestProducts({ limit = 10 } = {}) {
+  const products = await db
     .select()
     .from(productsSchema)
     .orderBy(desc(productsSchema.createdAt))
     .limit(limit)
     .execute();
 
-  return products;
+  return products.reverse();
 }
 
 /* (async () => {
