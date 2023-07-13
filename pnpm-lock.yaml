@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@astrojs/solid-js':
     specifier: ^2.2.0
-    version: 2.2.0(@babel/core@7.22.9)(solid-js@1.4.3)(vite@4.4.3)
+    version: 2.2.0(@babel/core@7.22.9)(solid-js@1.7.8)(vite@4.4.3)
   '@astrojs/tailwind':
     specifier: ^4.0.0
     version: 4.0.0(astro@2.8.1)(tailwindcss@3.0.24)
@@ -57,8 +57,8 @@ dependencies:
     specifier: ^0.11.0
     version: 0.11.0
   solid-js:
-    specifier: ^1.4.3
-    version: 1.4.3
+    specifier: ^1.7.8
+    version: 1.7.8
   tailwindcss:
     specifier: ^3.0.24
     version: 3.0.24(postcss@8.4.25)
@@ -151,14 +151,14 @@ packages:
       prismjs: 1.29.0
     dev: false
 
-  /@astrojs/solid-js@2.2.0(@babel/core@7.22.9)(solid-js@1.4.3)(vite@4.4.3):
+  /@astrojs/solid-js@2.2.0(@babel/core@7.22.9)(solid-js@1.7.8)(vite@4.4.3):
     resolution: {integrity: sha512-yZcpwGnPnFsF74+9ppXBy/h3rAbrhNuRCz/pTck2KWufwsmn5SwUWTBWLGgSqK3dhaw56Mp2MMJQuLY3Nc5VMw==}
     engines: {node: '>=16.12.0'}
     peerDependencies:
       solid-js: ^1.4.3
     dependencies:
       babel-preset-solid: 1.7.7(@babel/core@7.22.9)
-      solid-js: 1.4.3
+      solid-js: 1.7.8
       vitefu: 0.2.4(vite@4.4.3)
     transitivePeerDependencies:
       - '@babel/core'
@@ -1906,6 +1906,10 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: false
+
+  /csstype@3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: false
 
   /d@1.0.1:
@@ -4346,6 +4350,11 @@ packages:
     resolution: {integrity: sha512-hr3Wtp/GZIc/6DAGPDcV4/9WoZhjrkXsi5B/07QgX8tsdc6ilr7BFM6PM6rbdAX1kFSDYeZGLipIZZKyQP0O5Q==}
     dev: false
 
+  /seroval@0.5.1:
+    resolution: {integrity: sha512-ZfhQVB59hmIauJG5Ydynupy8KHyr5imGNtdDhbZG68Ufh1Ynkv9KOYOAABf71oVbQxJ8VkWnMHAjEHE7fWkH5g==}
+    engines: {node: '>=10'}
+    dev: false
+
   /server-destroy@1.0.1:
     resolution: {integrity: sha512-rb+9B5YBIEzYcD6x2VKidaa+cqYBJQKnU4oe4E3ANwRRN56yk/ua1YCJT1n21NTS8w6CcOclAKNP3PhdCXKYtQ==}
     dev: false
@@ -4390,8 +4399,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /solid-js@1.4.3:
-    resolution: {integrity: sha512-3uh2cbT4ICronIasLAxycF6SVgvqcfwFCDCzlEA9CEahn1qQg8Rw8aRGiI4O51PrHcN5aPRO9knYYRCs0PgzcQ==}
+  /solid-js@1.7.8:
+    resolution: {integrity: sha512-XHBWk1FvFd0JMKljko7FfhefJMTSgYEuVKcQ2a8hzRXfiuSJAGsrPPafqEo+f6l+e8Oe3cROSpIL6kbzjC1fjQ==}
+    dependencies:
+      csstype: 3.1.2
+      seroval: 0.5.1
     dev: false
 
   /source-map-js@1.0.2:
