@@ -37,7 +37,7 @@ export const post: APIRoute = async ({ request }) => {
     .where(eq(productsSchema.id, Number(result.insertId)))
     .execute();
 
-  resend.emails.send({
+  await resend.emails.send({
     from: "me@casperengelmann.com",
     to: "me@casperengelmann.com",
     subject: "New product created",
