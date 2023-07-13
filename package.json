@@ -9,8 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "push": "drizzle-kit push:mysql",
-    "generate": "drizzle-kit generate:mysql --out drizzle --schema src/db.ts",
+    "push": "dotenv drizzle-kit push:mysql",
+    "generate": "dotenv drizzle-kit generate:mysql --out drizzle --schema src/db.ts",
     "studio": "dotenv drizzle-kit studio"
   },
   "dependencies": {
