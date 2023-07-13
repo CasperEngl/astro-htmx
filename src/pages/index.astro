@@ -22,7 +22,11 @@ const products = await getLatestProducts()
 	</head>
 	<body class="min-h-screen grid place-items-center bg-gray-50">
 		<div class="space-y-8">
-			<h1 class="text-2xl font-bold">Astro HTMX</h1>
+			<div>
+				<h1 class="text-2xl font-bold">Astro HTMX</h1>
+
+				<a href="https://github.com/CasperEngl/astro-htmx/" rel="noopener noreferrer" target="_blank" class="mt-2 block text-blue-500 hover:text-blue-600 underline visited:text-purple-500">https://github.com/CasperEngl/astro-htmx/</a>
+			</div>
 
 			<div class="grid lg:grid-cols-2 items-start gap-x-12 gap-y-16">
 				<ProductList products={products} />
@@ -36,9 +40,10 @@ const products = await getLatestProducts()
 					hx-indicator="#new-product-indicator"
 					class="grid gap-y-6 grid-cols-1 group"
 					x-ref="form"
-					x-data="{ name: null, price: null, submitting: false }"
+					x-data="{ name: null, price: null, submitting: false, error: null }"
 					@htmx:after-swap.window="$refs.form.reset(); $refs.name.focus(); submitting = false"
 					@htmx:before-request.window="submitting = true"
+					@htmx:send-error.window="submitting = false; error = JSON.stringify($event.detail.error)"
 				>
 					<label class="grid gap-1">
 						<div>Name</div>
@@ -71,7 +76,7 @@ const products = await getLatestProducts()
 					</label>
 
 					<button type="submit"
-						class="flex gap-x-3 items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded group-disabled:opacity-50 group-disabled:cursor-not-allowed"
+						class="flex gap-x-3 items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
 						:disabled="!name || !price || submitting"
 					>
 						<span>Add product</span>
@@ -84,8 +89,69 @@ const products = await getLatestProducts()
 								<span class="sr-only">Loading...</span>
 						</div>
 					</button>
+
+					<div class="text-red-500" x-show="error">
+						<span x-text="error"></span>
+					</div>
 				</form>
 			</div>
+
+			<div>
+				<h2 class="text-lg text-gray-500 font-medium">
+					Built with
+				</h2>
+
+				<ul class="list-disc pl-4 space-y-1 mt-4 list-outside text-gray-500">
+					<li>
+						<!-- Astro -->
+						<a href="https://astro.build/">https://astro.build/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Used to hold everything together.</p>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Bonus: Lets me deploy anywhere 🚀</p>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Current: ▲ Vercel</p>
+					</li>
+					<li>
+						<!-- SolidJS -->
+						<a href="https://solidjs.com/">https://solidjs.com/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Used to render the product list in SSR and render it in the response from /api/new-product.</p>
+					</li>
+					<li>
+						<!-- HTMX -->
+						<a href="https://htmx.org/">https://htmx.org/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Used to handle the form submission HTTP. ⚡️</p>
+					</li>
+					<li>
+						<!-- AlpineJS -->
+						<a href="https://alpinejs.dev/">https://alpinejs.dev/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Used to handle the form submission validation. 🔮✨</p>
+					</li>
+					<li>
+						<!-- TailwindCSS -->
+						<a href="https://tailwindcss.com/">https://tailwindcss.com/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Used to style the page.</p>
+					</li>
+					<li>
+						<!-- PlanetScale -->
+						<a href="https://planetscale.com/">https://planetscale.com/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">MySQL compatible Edge™ DBaaS. Used to store the products.</p>
+					</li>
+					<li>
+						<!-- Drizzle ORM/Kit -->
+						<a href="https://drizzle.team/">https://drizzle.team/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">"Professional developers" creating an ORM as well as a DBMS Kit. Yet TBD. whether it's a good idea to use it in production. 🤷‍♂️</p>
+					</li>
+					<li>
+						<!-- Resend -->
+						<a href="https://resend.com/">https://resend.com/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">I receive an email when a new product has been added. Keeping an eye on you 👀</p>
+					</li>
+					<li>
+						<!-- React Email -->
+						<a href="https://react.email/">https://react.email/</a>
+						<p class="text-gray-500 max-w-xs text-xs font-light">Used to create the email template being sent to me</p>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 	</body>
 </html>
