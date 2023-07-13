@@ -1,8 +1,5 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
-import { loadEnv } from "vite";
-
-const loadedEnv = loadEnv("MODE", process.cwd(), "");
 
 export const env = createEnv({
   /*
@@ -18,5 +15,5 @@ export const env = createEnv({
    * What object holds the environment variables at runtime.
    * Often `process.env` or `import.meta.env`
    */
-  runtimeEnv: loadedEnv,
+  runtimeEnv: import.meta.env,
 });
