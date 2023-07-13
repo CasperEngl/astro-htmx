@@ -17,6 +17,8 @@ const products = await db.select().from(productsSchema).execute();
 			src="https://unpkg.com/htmx.org@1.9.2"
 			integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
 			crossorigin="anonymous"></script>
+
+			<script src="//unpkg.com/alpinejs" defer></script>
 	</head>
 	<body class="min-h-screen grid place-items-center bg-gray-50">
 		<div class="space-y-8">
@@ -31,14 +33,20 @@ const products = await db.select().from(productsSchema).execute();
 					hx-trigger="submit"
 					hx-swap="outerHTML"
 					hx-target="#product-list"
-					class="grid gap-y-6 grid-cols-1"
+					class="grid gap-y-6 grid-cols-1 group"
+					x-ref="form"
+					x-data="{ name: null, price: null }"
+					@htmx:after-swap.window="$refs.form.reset(); $refs.name.focus();"
 				>
 					<label class="grid gap-1">
 						<div>Name</div>
 						<div class="relative">
 							<input type="text" name="name" required
-								class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+								class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder:text-gray-400"
 								placeholder="Product name"
+								pattern=".{3,}"
+								x-ref="name"
+								x-model="name"
 							/>
 						</div>
 					</label>
@@ -49,30 +57,23 @@ const products = await db.select().from(productsSchema).execute();
 							<input type="number" name="price" required
 								class="w-full border border-gray-300 rounded-md pl-8 pr-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
 								step="0.01"
+								placeholder="420.69"
+								x-model="price"
 							/>
-							<span class="pointer-events-none absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+							<span class="pointer-events-none absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400">
 								$
 							</span>
 						</div>
 					</label>
 
 					<button type="submit"
-						class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+						class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded group-disabled:opacity-50 group-disabled:cursor-not-allowed"
+						:disabled="!name || !price"
 					>
-						Add
+						Add product
 					</button>
-
-					<div id="loading" hx-indicator class="hidden">Loading...</div>
 				</form>
-
-				<script is:inline>
-						document.body.addEventListener('htmx:afterSwap', function(evt) {
-							const form = document.querySelector("#new-product-form");
-							form.reset();
-						});
-				</script>
 			</div>
-
 		</div>
 	</body>
 </html>
