@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { db, productsSchema } from "../../db";
+import { db, getLatestProducts, productsSchema } from "../../db";
 import { ProductList } from "../../components/product-list";
 import { renderToString } from "solid-js/web";
 
@@ -28,7 +28,7 @@ export const post: APIRoute = async ({ request }) => {
     })
     .execute();
 
-  const products = await db.select().from(productsSchema).limit(10).execute();
+  const products = await getLatestProducts();
 
   return new Response(renderToString(() => ProductList({ products })));
 };

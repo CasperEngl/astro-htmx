@@ -1,8 +1,8 @@
 ---
 import { ProductList } from "../components/product-list";
-import { db, productsSchema } from "../db";
+import { getLatestProducts } from "../db";
 
-const products = await db.select().from(productsSchema).limit(10).execute();
+const products = await getLatestProducts()
 ---
 
 <html lang="en">
