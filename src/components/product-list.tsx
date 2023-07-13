@@ -13,6 +13,10 @@ export function ProductList({
   ...props
 }: JSX.HTMLAttributes<HTMLUListElement> & ProductListOwnProps) {
   const classNames = clsx("mt-4 text-lg text-gray-500", className);
+  const priceFormat = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
   return (
     <div id="product-list">
@@ -24,7 +28,7 @@ export function ProductList({
         <For each={products}>
           {(product) => (
             <li>
-              {product.name} ${product.price}
+              {product.name} {priceFormat.format(Number(product.price))}
               {/* <form action="/api/delete-product" method="POST">
                 <input type="hidden" name="id" value={product.id} />
                 <button type="submit">Delete</button>
