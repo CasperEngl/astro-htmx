@@ -1,15 +1,17 @@
+import type { JSX } from "solid-js";
 import { For } from "solid-js";
 import type { Product } from "../db";
 
-type ProductListProps = {
+type ProductListOwnProps = {
   products: Product[];
 };
 
-export function ProductList(props: ProductListProps) {
-  const { products } = props;
-
+export function ProductList({
+  products,
+  ...props
+}: JSX.HTMLAttributes<HTMLUListElement> & ProductListOwnProps) {
   return (
-    <ul id="product-list" class="text-lg text-gray-500">
+    <ul id="product-list" class="text-lg text-gray-500" {...props}>
       <For each={products}>
         {(product) => (
           <li>
