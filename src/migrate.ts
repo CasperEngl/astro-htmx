@@ -1,9 +1,16 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
-import sqlite from "better-sqlite3";
+import { drizzle } from "drizzle-orm/mysql2";
+import { migrate } from "drizzle-orm/mysql2/migrator";
+import mysql from "mysql2/promise";
 
-const connectionString = "sqlite.db";
-const sql = sqlite(connectionString);
-const db = drizzle(sql);
+// create the connection
+const poolConnection = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  database: "test",
+  multipleStatements: true,
+});
 
-await migrate(db, { migrationsFolder: "drizzle" });
+const db = drizzle(poolConnection);
+
+// this will automatically run needed migrations on the database
+await migrate(db, { migrationsFolder: "./drizzle" });

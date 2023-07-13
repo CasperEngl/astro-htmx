@@ -1,10 +1,11 @@
 import type { Config } from "drizzle-kit";
+import "dotenv/config";
 
 export default {
-  schema: "./src/schema.ts",
+  schema: "./src/db.ts",
   out: "./drizzle",
-  driver: "better-sqlite",
+  driver: "mysql2",
   dbCredentials: {
-    url: "sqlite.db",
+    connectionString: process.env.DATABASE_URL!,
   },
 } satisfies Config;
