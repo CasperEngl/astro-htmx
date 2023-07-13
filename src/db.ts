@@ -1,6 +1,12 @@
 import { connect } from "@planetscale/database";
-import type { InferModel } from "drizzle-orm";
-import { int, mysqlTableCreator, serial, text } from "drizzle-orm/mysql-core";
+import { desc, type InferModel } from "drizzle-orm";
+import {
+  int,
+  mysqlTableCreator,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/mysql-core";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
 import { env } from "./env";
 
@@ -10,6 +16,8 @@ export const productsSchema = mysqlTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   price: int("price").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
 export type Product = InferModel<typeof productsSchema>;
@@ -19,6 +27,17 @@ const connection = connect({
 });
 
 export const db = drizzle(connection);
+
+export function getLatestProducts({ limit = 10 } = {}) {
+  const products = db
+    .select()
+    .from(productsSchema)
+    .orderBy(desc(productsSchema.createdAt))
+    .limit(limit)
+    .execute();
+
+  return products;
+}
 
 /* (async () => {
   const [bike] = await db
