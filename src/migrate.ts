@@ -1,12 +1,11 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { migrate } from "drizzle-orm/mysql2/migrator";
 import mysql from "mysql2/promise";
+import { env } from "./env";
 
 // create the connection
 const poolConnection = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  database: "test",
+  uri: env.DATABASE_URL,
   multipleStatements: true,
 });
 

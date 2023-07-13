@@ -1,7 +1,10 @@
 import { connect } from "@planetscale/database";
 import type { InferModel } from "drizzle-orm";
-import { int, mysqlTable, serial, text } from "drizzle-orm/mysql-core";
+import { int, mysqlTableCreator, serial, text } from "drizzle-orm/mysql-core";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
+import { env } from "./env";
+
+const mysqlTable = mysqlTableCreator((tableName) => `astro_htmx_${tableName}`);
 
 export const productsSchema = mysqlTable("products", {
   id: serial("id").primaryKey(),
@@ -12,7 +15,7 @@ export const productsSchema = mysqlTable("products", {
 export type Product = InferModel<typeof productsSchema>;
 
 const connection = connect({
-  url: import.meta.env.DATABASE_URL!,
+  url: env.DATABASE_URL,
 });
 
 export const db = drizzle(connection);
