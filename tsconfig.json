@@ -6,8 +6,6 @@
     "types": ["node"],
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "isolatedModules": true
   }
 }
