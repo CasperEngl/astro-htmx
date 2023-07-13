@@ -14,8 +14,8 @@ function invariant<T>(
 
 export const post: APIRoute = async ({ request }) => {
   const data = await request.formData();
-  const name = data.get("name");
-  const price = data.get("price");
+  const name = data.get("name")?.toString();
+  const price = data.get("price")?.toString();
 
   invariant(name, "Name is required");
   invariant(price, "Price is required");
@@ -23,8 +23,8 @@ export const post: APIRoute = async ({ request }) => {
   await db
     .insert(productsSchema)
     .values({
-      name: String(name),
-      price: Number(price),
+      name,
+      price,
     })
     .execute();
 
