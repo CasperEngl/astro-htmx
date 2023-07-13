@@ -1,5 +1,4 @@
 import { connect } from "@planetscale/database";
-import "dotenv/config";
 import type { InferModel } from "drizzle-orm";
 import { int, mysqlTable, serial, text } from "drizzle-orm/mysql-core";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
@@ -13,7 +12,7 @@ export const productsSchema = mysqlTable("products", {
 export type Product = InferModel<typeof productsSchema>;
 
 const connection = connect({
-  url: process.env.DATABASE_URL!,
+  url: import.meta.env.DATABASE_URL!,
 });
 
 export const db = drizzle(connection);
