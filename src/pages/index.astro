@@ -1,8 +1,8 @@
 ---
 import { ProductList } from "../components/product-list";
-import { db, productsSchema } from "../schema";
+import { db, productsSchema } from "../db";
 
-const products = db.select().from(productsSchema).all();
+const products = await db.select().from(productsSchema).execute();
 ---
 
 <html lang="en">
