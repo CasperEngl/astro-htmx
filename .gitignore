@@ -25,3 +25,6 @@ drizzle/
 
 # vercel
 .vercel
+
+# import meta env typescript
+import-meta-env.d.ts
