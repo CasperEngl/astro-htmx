@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "push": "drizzle-kit push:mysql",
-    "generate": "drizzle-kit generate:mysql --out drizzle --schema src/db.ts"
+    "generate": "drizzle-kit generate:mysql --out drizzle --schema src/db.ts",
+    "studio": "dotenv drizzle-kit studio"
   },
   "dependencies": {
     "@astrojs/solid-js": "^2.2.0",
@@ -21,6 +22,7 @@
     "@t3-oss/env-core": "^0.6.0",
     "@types/node": "^20.4.2",
     "astro": "^2.8.1",
+    "dotenv-cli": "^7.2.1",
     "drizzle-kit": "^0.19.5",
     "drizzle-orm": "^0.27.2",
     "eslint-config-prettier": "^8.8.0",
