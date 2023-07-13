@@ -12,7 +12,7 @@ export function ProductList({
   class: className,
   ...props
 }: JSX.HTMLAttributes<HTMLUListElement> & ProductListOwnProps) {
-  const classNames = clsx("text-lg text-gray-500", className);
+  const classNames = clsx("mt-4 text-lg text-gray-500", className);
 
   return (
     <div id="product-list">
