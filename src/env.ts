@@ -9,6 +9,7 @@ export const env = createEnv({
   clientPrefix: "PUBLIC_",
   server: {
     DATABASE_URL: z.string().url(),
+    RESEND_API_KEY: z.string(),
   },
   client: {},
   /**

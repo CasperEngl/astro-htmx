@@ -2,6 +2,9 @@ import type { APIRoute } from "astro";
 import { db, getLatestProducts, productsSchema } from "../../db";
 import { ProductList } from "../../components/product-list";
 import { renderToString } from "solid-js/web";
+import { resend } from "../../resend";
+import NewProductEmail from "../../../emails/new-product";
+import { eq } from "drizzle-orm";
 
 function invariant<T>(
   value: T | null | undefined,
@@ -20,13 +23,26 @@ export const post: APIRoute = async ({ request }) => {
   invariant(name, "Name is required");
   invariant(price, "Price is required");
 
-  await db
+  const result = await db
     .insert(productsSchema)
     .values({
       name,
       price,
     })
     .execute();
+
+  const [product] = await db
+    .select()
+    .from(productsSchema)
+    .where(eq(productsSchema.id, result.insertId as any))
+    .execute();
+
+  resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: "me@casperengelmann.com",
+    subject: "New product created",
+    react: NewProductEmail({ product }),
+  });
 
   const products = await getLatestProducts();
 
