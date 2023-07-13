@@ -15,7 +15,10 @@ const mysqlTable = mysqlTableCreator((tableName) => `astro_htmx_${tableName}`);
 export const productsSchema = mysqlTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  price: decimal("price").notNull(),
+  price: decimal("price", {
+    precision: 10,
+    scale: 2,
+  }).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
