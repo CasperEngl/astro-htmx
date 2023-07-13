@@ -1,6 +1,7 @@
 import type { JSX } from "solid-js";
 import { For } from "solid-js";
 import type { Product } from "../db";
+import { clsx } from "clsx";
 
 type ProductListOwnProps = {
   products: Product[];
@@ -8,10 +9,13 @@ type ProductListOwnProps = {
 
 export function ProductList({
   products,
+  class: className,
   ...props
 }: JSX.HTMLAttributes<HTMLUListElement> & ProductListOwnProps) {
+  const classNames = clsx("text-lg text-gray-500", className);
+
   return (
-    <ul id="product-list" class="text-lg text-gray-500" {...props}>
+    <ul id="product-list" class={classNames} {...props}>
       <For each={products}>
         {(product) => (
           <li>
