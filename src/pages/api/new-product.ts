@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { db, productsSchema } from "../../schema";
+import { db, productsSchema } from "../../db";
 import { ProductList } from "../../components/product-list";
 import { renderToString } from "solid-js/web";
 
@@ -20,15 +20,15 @@ export const post: APIRoute = async ({ request }) => {
   invariant(name, "Name is required");
   invariant(price, "Price is required");
 
-  db.insert(productsSchema)
+  await db
+    .insert(productsSchema)
     .values({
       name: String(name),
       price: Number(price),
     })
-    .returning()
-    .run();
+    .execute();
 
-  const products = db.select().from(productsSchema).all();
+  const products = await db.select().from(productsSchema).execute();
 
   return new Response(renderToString(() => ProductList({ products })));
 };
