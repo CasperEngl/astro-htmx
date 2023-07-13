@@ -10,6 +10,10 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     RESEND_API_KEY: z.string(),
+    PLANETSCALE_TOKEN: z.string(),
+    PLANETSCALE_TOKEN_NAME: z.string(),
+    PLANETSCALE_ORG: z.string(),
+    PLANETSCALE_DB: z.string(),
   },
   client: {},
   /**

@@ -31,3 +31,7 @@ import-meta-env.d.ts
 
 # react email
 .react-email
+
+# sst
+.sst
+sst-env.d.ts
