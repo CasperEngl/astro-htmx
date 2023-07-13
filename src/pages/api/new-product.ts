@@ -28,7 +28,7 @@ export const post: APIRoute = async ({ request }) => {
     })
     .execute();
 
-  const products = await db.select().from(productsSchema).execute();
+  const products = await db.select().from(productsSchema).limit(10).execute();
 
   return new Response(renderToString(() => ProductList({ products })));
 };
