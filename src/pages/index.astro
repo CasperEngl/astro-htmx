@@ -25,11 +25,7 @@ const products = await db.select().from(productsSchema).limit(10).execute();
 			<h1 class="text-2xl font-bold">Astro HTMX</h1>
 
 			<div class="grid grid-cols-2 items-start gap-x-12">
-				<div>
-					<h2 class="text-xl font-semibold text-gray-700">Latest 10 products</h2>
-
-					<ProductList products={products} class="mt-4" />
-				</div>
+				<ProductList products={products} class="mt-4" />
 
 				<form
 					id="new-product-form"

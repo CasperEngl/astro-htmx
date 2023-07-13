@@ -15,18 +15,22 @@ export function ProductList({
   const classNames = clsx("text-lg text-gray-500", className);
 
   return (
-    <ul id="product-list" class={classNames} {...props}>
-      <For each={products}>
-        {(product) => (
-          <li>
-            {product.name} ${product.price}
-            {/* <form action="/api/delete-product" method="POST">
-              <input type="hidden" name="id" value={product.id} />
-              <button type="submit">Delete</button>
-            </form> */}
-          </li>
-        )}
-      </For>
-    </ul>
+    <div>
+      <h2 class="text-xl font-semibold text-gray-700">Latest 10 products</h2>
+
+      <ul id="product-list" class={classNames} {...props}>
+        <For each={products}>
+          {(product) => (
+            <li>
+              {product.name} ${product.price}
+              {/* <form action="/api/delete-product" method="POST">
+                <input type="hidden" name="id" value={product.id} />
+                <button type="submit">Delete</button>
+              </form> */}
+            </li>
+          )}
+        </For>
+      </ul>
+    </div>
   );
 }
