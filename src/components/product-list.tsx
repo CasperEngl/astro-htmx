@@ -16,7 +16,9 @@ export function ProductList({
 
   return (
     <div id="product-list">
-      <h2 class="text-xl font-semibold text-gray-700">Latest 10 products</h2>
+      <h2 class="text-xl font-semibold text-gray-700">
+        Latest {products.length} products
+      </h2>
 
       <ul class={classNames} {...props}>
         <For each={products}>
