@@ -38,7 +38,7 @@ export const post: APIRoute = async ({ request }) => {
     .execute();
 
   resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: "me@casperengelmann.com",
     to: "me@casperengelmann.com",
     subject: "New product created",
     react: NewProductEmail({ product }),
