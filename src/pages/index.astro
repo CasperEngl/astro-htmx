@@ -2,7 +2,7 @@
 import { ProductList } from "../components/product-list";
 import { db, productsSchema } from "../db";
 
-const products = await db.select().from(productsSchema).execute();
+const products = await db.select().from(productsSchema).limit(10).execute();
 ---
 
 <html lang="en">
@@ -25,7 +25,11 @@ const products = await db.select().from(productsSchema).execute();
 			<h1 class="text-2xl font-bold">Astro HTMX</h1>
 
 			<div class="grid grid-cols-2 items-start gap-x-12">
-				<ProductList products={products} />
+				<div>
+					<h2 class="text-xl font-semibold text-gray-700">Latest 10 products</h2>
+
+					<ProductList products={products} class="mt-4" />
+				</div>
 
 				<form
 					id="new-product-form"
