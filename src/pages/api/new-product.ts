@@ -34,7 +34,7 @@ export const post: APIRoute = async ({ request }) => {
   const [product] = await db
     .select()
     .from(productsSchema)
-    .where(eq(productsSchema.id, result.insertId as any))
+    .where(eq(productsSchema.id, Number(result.insertId)))
     .execute();
 
   resend.emails.send({
