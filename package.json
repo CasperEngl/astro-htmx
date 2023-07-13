@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "prepare": "import-meta-env-typescript -x .env.example",
+    "env": "import-meta-env-typescript -x .env.example",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
