@@ -1,7 +1,7 @@
 import { connect } from "@planetscale/database";
 import { desc, type InferModel } from "drizzle-orm";
 import {
-  int,
+  decimal,
   mysqlTableCreator,
   serial,
   text,
@@ -15,7 +15,7 @@ const mysqlTable = mysqlTableCreator((tableName) => `astro_htmx_${tableName}`);
 export const productsSchema = mysqlTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  price: int("price").notNull(),
+  price: decimal("price").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -38,32 +38,3 @@ export async function getLatestProducts({ limit = 10 } = {}) {
 
   return products.reverse();
 }
-
-/* (async () => {
-  const [bike] = await db
-    .select()
-    .from(productsSchema)
-    .where(eq(productsSchema.name, "Bike"))
-    .limit(1)
-    .execute();
-
-  if (bike) {
-    return;
-  }
-
-  // Seed the database
-
-  const seedItems = [
-    { name: "Bike", price: 100 },
-    { name: "TV", price: 200 },
-    { name: "Album", price: 10 },
-    { name: "Book", price: 5 },
-    { name: "Phone", price: 500 },
-    { name: "Computer", price: 1000 },
-    { name: "Keyboard", price: 25 },
-  ];
-
-  const result = await db.insert(productsSchema).values(seedItems).execute();
-
-  console.log("inserted rows", result.rows);
-})(); */
