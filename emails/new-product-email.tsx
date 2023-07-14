@@ -10,6 +10,10 @@ type NewProductEmailOwnProps = {
 };
 
 export default function NewProductEmail({ product }: NewProductEmailOwnProps) {
+  if (!product) {
+    return null;
+  }
+
   return (
     <Html>
       <Tailwind>
