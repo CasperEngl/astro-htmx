@@ -1,10 +1,10 @@
 import type { APIRoute } from "astro";
-import { db, getLatestProducts, productsSchema } from "../../db";
-import { ProductList } from "../../components/product-list";
-import { renderToString } from "solid-js/web";
-import { resend } from "../../resend";
-import NewProductEmail from "../../../emails/new-product";
 import { eq } from "drizzle-orm";
+import { renderToString } from "solid-js/web";
+import NewProductEmail from "../../../emails/new-product-email";
+import { ProductList } from "../../components/product-list";
+import { db, getLatestProducts, productsSchema } from "../../db";
+import { resend } from "../../resend";
 
 function invariant<T>(
   value: T | null | undefined,
