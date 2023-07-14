@@ -17,7 +17,6 @@
     "email:dev": "email dev --port 4000"
   },
   "dependencies": {
-    "@astrojs/react": "^2.2.1",
     "@astrojs/solid-js": "^2.2.0",
     "@astrojs/tailwind": "^4.0.0",
     "@astrojs/vercel": "^3.7.0",
