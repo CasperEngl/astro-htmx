@@ -1,3 +1,5 @@
+/** @jsxImportSource solid-js */
+
 import type { JSX } from "solid-js";
 import { For } from "solid-js";
 import type { Product } from "../db";
@@ -13,15 +15,13 @@ export function ProductList({
   class: className,
   ...props
 }: JSX.HTMLAttributes<HTMLUListElement> & ProductListOwnProps) {
-  const classNames = clsx("mt-4 text-lg text-gray-500", className);
-
   return (
     <div id="product-list">
-      <h2 className="text-xl font-semibold text-gray-700">
+      <h2 class="text-xl font-semibold text-gray-700">
         Latest {products.length} products
       </h2>
 
-      <ul className={classNames} {...props}>
+      <ul class={clsx("mt-4 text-lg text-gray-500", className)} {...props}>
         <For each={products}>
           {(product) => (
             <li>
