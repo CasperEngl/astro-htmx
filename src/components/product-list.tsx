@@ -21,7 +21,10 @@ export function ProductList({
         Latest {products.length} products
       </h2>
 
-      <ul class={clsx("mt-4 text-lg text-gray-500", className)} {...props}>
+      <ul
+        class={clsx("mt-4 list-decimal text-lg text-gray-500", className)}
+        {...props}
+      >
         <For each={products}>
           {(product) => (
             <li>
