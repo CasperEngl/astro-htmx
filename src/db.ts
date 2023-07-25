@@ -39,5 +39,5 @@ export async function getLatestProducts({ limit = 10 } = {}) {
     .limit(limit)
     .execute();
 
-  return products.reverse();
+  return products;
 }
