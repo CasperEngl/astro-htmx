@@ -22,7 +22,7 @@ export function ProductList({
       </h2>
 
       <ul
-        class={clsx("mt-4 list-decimal text-lg text-gray-500", className)}
+        class={clsx("mt-4 list-decimal pl-6 text-lg text-gray-500", className)}
         {...props}
       >
         <For each={products}>
