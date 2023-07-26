@@ -9,6 +9,7 @@ export const env = createEnv({
   clientPrefix: "PUBLIC_",
   server: {
     DATABASE_URL: z.string().url(),
+    DATABASE_AUTH_TOKEN: z.string(),
     RESEND_API_KEY: z.string(),
   },
   client: {},
@@ -16,5 +17,5 @@ export const env = createEnv({
    * What object holds the environment variables at runtime.
    * Often `process.env` or `import.meta.env`
    */
-  runtimeEnv: import.meta.env,
+  runtimeEnv: import.meta.env ? import.meta.env : process.env,
 });

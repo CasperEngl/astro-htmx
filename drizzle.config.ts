@@ -2,10 +2,12 @@ import type { Config } from "drizzle-kit";
 import { env } from "./src/env";
 
 export default {
-  schema: "./src/db.ts",
-  out: "./drizzle",
-  driver: "mysql2",
+  schema: "./src/schema.ts",
+  driver: "turso",
   dbCredentials: {
-    connectionString: env.DATABASE_URL,
+    url: env.DATABASE_URL,
+    authToken: env.DATABASE_AUTH_TOKEN,
   },
+  verbose: true,
+  strict: true,
 } satisfies Config;
